@@ -1,4 +1,4 @@
-# parhell - Hello World in a variety of parallel processing languages
+# parhello - Hello World in a variety of parallel processing languages
 
 # EXAMPLE
 
