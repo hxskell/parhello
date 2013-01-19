@@ -1,7 +1,7 @@
 all: parhello
 
-parhello: parhello.c
-	gcc -fopenmp -o parhello parhello.c
+parhello: parhello.cpp
+	g++ -fopenmp -o parhello parhello.cpp
 
 test: parhello
 	./parhello
