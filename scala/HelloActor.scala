@@ -6,10 +6,10 @@ import scala.actors.Actor._
 case class Store(v : Char)
 case class Show()
 
-object HActor extends Actor {
+object HelloActor extends Actor {
 	var c : Char = ' ';
 
-	def act() {
+	def act() = {
 		while (true) {
 			receive {
 				case Store(v) => c = v
