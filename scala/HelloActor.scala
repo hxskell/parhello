@@ -13,7 +13,7 @@ class HActor extends Actor {
 		while (true) {
 			receive {
 				case Store(v) => c = v
-				case Show() => print(c); System.out.flush
+				case Show() => print(c); exit
 			}
 		}
 	}
@@ -24,10 +24,9 @@ object HelloActor {
 		val s = "Hello World!"
 
 		val as : Seq[HActor] = s.map { _ => new HActor }
+		as.map(_.start)
 
 		(as, s).zipped map (_ ! Store(_))
 		as.map (_ ! Show())
-
-		Thread.sleep(10)
 	}
 }
