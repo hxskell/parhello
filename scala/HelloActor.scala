@@ -23,9 +23,11 @@ object HelloActor {
 	def main(args : Array[String]) {
 		val s = "Hello World!"
 
-		val as : Array[HActor] = new Array[HActor](s.length)
+		val as : Seq[HActor] = s.map { _ => new HActor }
 
 		(as, s).zipped map (_ ! Store(_))
 		as.map (_ ! Show())
+
+		Thread.sleep(10)
 	}
 }
