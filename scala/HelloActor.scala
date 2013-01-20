@@ -13,7 +13,7 @@ class HActor extends Actor {
 		while (true) {
 			receive {
 				case Store(v) => c = v
-				case Show() => print(c)
+				case Show() => print(c); System.out.flush
 			}
 		}
 	}
