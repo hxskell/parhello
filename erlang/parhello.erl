@@ -8,4 +8,4 @@ hello(C) ->
 	io:format("~c", [C]).
 
 main(_) ->
-	lists:map(fun(C) -> spawn(parhello, hello, [C]) end, "Hello World!").
+	lists:map(fun(C) -> spawn(parhello, hello, [C]) end, "Hello World!\n").
