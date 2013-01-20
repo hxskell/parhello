@@ -1,3 +1,4 @@
 *.o
 *.hi
 parhello
+*.exe
