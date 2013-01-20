@@ -7,6 +7,4 @@ def main
 	Parallel.map("Hello World!\n") { |c| putc c }
 end
 
-if __FILE__ == $0
-	main
-end
+main if __FILE__ == $0
