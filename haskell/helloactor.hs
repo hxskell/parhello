@@ -1,23 +1,27 @@
 #!/usr/bin/env runhaskell
 
--- Andrew Pennebaker
-
 import Control.Concurrent
 import Control.Monad
 
-data Msg
-	= Chr Char
-	| Exit
-	deriving (Eq, Show)
+data Msg = Chr Char | Exit deriving (Eq, Show)
 
-helloActor :: Chan Msg -> IO ()
+type Actor a = Chan a -> IO ()
+
+startActor :: Actor a -> Chan a -> IO ThreadId
+startActor actor chan = forkIO (actor chan)
+
+send :: Actor a -> a -> IO ()
+send = writeChan
+
+receive :: Chan a -> IO a
+receive = readChan
+
+helloActor :: Actor Msg
 helloActor chan = do
-	msg <- readChan chan
+	msg <- receive chan
 
 	case msg of
 		Chr c -> do
-			threadDelay 10000 -- us
-
 			putChar c
 			helloActor chan
 		Exit -> return ()
@@ -27,9 +31,8 @@ main = do
 	let s = "Hello World!\n"
 
 	chans <- replicateM (length s) newChan
-
-	mapM_ (forkIO . helloActor) chans
-	zipWithM (\chan c -> writeChan chan (Chr c)) chans s
+	mapM_ (startActor . helloActor) chans
+	zipWithM (\chan c -> send chan (Chr c)) chans s
 
 	threadDelay 20000 -- us
 
