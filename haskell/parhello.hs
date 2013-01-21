@@ -1,14 +1,6 @@
 #!/usr/bin/env runhaskell
 
 -- Andrew Pennebaker
---
--- Compile:
---
--- ghc -package parallel-io -threaded parhello.hs -o parhello
---
--- Run:
---
--- ./parhello +RTS
 
 import Control.Concurrent.ParallelIO.Global
 import System.IO
