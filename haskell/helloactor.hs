@@ -3,6 +3,7 @@
 -- Andrew Pennebaker
 
 import Control.Concurrent
+import Control.Monad
 
 data Msg
 	= Chr Char
@@ -15,7 +16,7 @@ helloActor chan = do
 
 	case msg of
 		Chr c -> do
-			threadDelay 1000 -- ms
+			threadDelay 10000 -- us
 
 			putChar c
 			helloActor chan
@@ -25,8 +26,8 @@ main :: IO ()
 main = do
 	let s = "Hello World!\n"
 
-	chans <- replicate (length s) newChan
+	chans <- replicateM (length s) newChan
 
-	mapM_ (forkIO helloActor) chans
+	mapM_ (forkIO . helloActor) chans
 	zipWith (chans, s) (\(chan, c) -> writeChan chan c)
 	mapM_ (writeChan Exit) chans
