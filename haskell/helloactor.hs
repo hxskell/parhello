@@ -29,5 +29,5 @@ main = do
 	chans <- replicateM (length s) newChan
 
 	mapM_ (forkIO . helloActor) chans
-	zipWith (chans, s) (\(chan, c) -> writeChan chan c)
+	zipWith (\chan c -> writeChan chan c) chans s
 	mapM_ (writeChan Exit) chans
