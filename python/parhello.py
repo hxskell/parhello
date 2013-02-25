@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 
-import pp
+import multiprocessing
 import sys
 
 def hello(c):
 	sys.stdout.write(c)
 
 def main():
-	server = pp.Server()
-
-	for c in "Hello World!\n":
-		server.submit(hello, (c,), (), ("sys",))()
+	p = multiprocessing.Pool()
+	p.map(hello, "Hello World!\n")
 
 if __name__=="__main__":
 	main()
