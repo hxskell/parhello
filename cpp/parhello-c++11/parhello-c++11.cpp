@@ -17,7 +17,6 @@ int main() {
                  launch::async,
                  [&]() {
                    cout << message[i];
-                   cout.flush();
                  }
                  );
     });
