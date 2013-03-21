@@ -17,9 +17,7 @@ int main() {
     futures.emplace_back(
                          std::async(
                                     launch::async,
-                                    [&]() {
-                                      cout << message[i];
-                                    }
+                                    [&]() { cout << message[i]; }
                                     )
                          );
   }
