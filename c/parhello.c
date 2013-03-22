@@ -3,14 +3,14 @@
 #include <string.h>
 
 int main() {
-	char *s = "Hello World!\n";
+  char *s = "Hello World!\n";
 
-	int i;
+  int i;
 
-	#pragma omp parallel for
-	for (i = 0; i < strlen(s); i++) {
-		putc(s[i], stdout);
-	}
+#pragma omp parallel for
+  for (i = 0; i < strlen(s); i++) {
+    putc(s[i], stdout);
+  }
 
-	return 0;
+  return 0;
 }

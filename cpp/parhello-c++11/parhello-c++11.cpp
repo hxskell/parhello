@@ -15,11 +15,8 @@ int main() {
 
   for (auto i : range) {
     futures.emplace_back(
-                         std::async(
-                                    launch::async,
-                                    [&]() { cout << message[i]; }
-                                    )
-                         );
+      std::async(launch::async, [&]() { cout << message[i]; })
+    );
   }
 
   return 0;

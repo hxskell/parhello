@@ -4,13 +4,13 @@
 using namespace std;
 
 int main() {
-	string s = "Hello World!\n";
-	int i;
+  string s = "Hello World!\n";
+  int i;
 
-	# pragma omp parallel for
-	for (i = 0; i < s.length(); i++) {
-		cout << s[i];
-	}
+# pragma omp parallel for
+  for (i = 0; i < s.length(); i++) {
+    cout << s[i];
+  }
 
-	return 0;
+  return 0;
 }
