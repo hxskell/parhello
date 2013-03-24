@@ -4,23 +4,20 @@ import
   Application
   OS
 define
-  fun {ParForEach Xs P}
-    case Xs
-    of nil then nil
-    [] X|Xr then thread {P X} nil end |{ParForEach Xr P}
-    end
-  end
+ {OS.srand 0}
 
-  {OS.srand 0}
-
-  _=
-  {ParForEach
+  Children=
+  {Map
    "Hello World!\n"
-   proc {$ C}
-     {Delay ({OS.rand} mod 2)}
-     {System.printInfo ""#[C]}
+   fun {$ C}
+     thread
+       {Delay ({OS.rand} mod 2)}
+       {System.printInfo ""#[C]}
+       nil
+     end
    end
   }
 
+  {Wait Children}
   {Application.exit 0}
 end
