@@ -11,7 +11,7 @@ define
      thread
        {Delay ({OS.rand} mod 2)}
        {System.printInfo ""#[C]}
-       nil
+       unit
      end
    end
   }
