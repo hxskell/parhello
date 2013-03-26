@@ -4,8 +4,6 @@ import
   Application
   OS
 define
- {OS.srand 0}
-
   Children=
   {Map
    "Hello World!\n"
@@ -18,6 +16,6 @@ define
    end
   }
 
-  {Wait Children}
+  {ForAll Children Wait}
   {Application.exit 0}
 end
