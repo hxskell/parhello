@@ -1,16 +1,22 @@
 -module(parhello).
 -author("andrew.pennebaker@gmail.com").
--export([hello/0, start/0]).
+-export([counter/1, hello/1, start/0]).
 
--import(lists, [map/2]).
+counter(0) -> init:stop();
+counter(N) ->
+  receive
+    I -> counter(N - I)
+  end.
 
-hello() ->
-	receive
-		C -> io:format("~c", [C])
-	end.
+hello(Counter) ->
+  receive
+    C ->
+      io:format("~c", [C]),
+      Counter ! 1
+  end.
 
 start() ->
-	lists:map(
-		fun(C) -> spawn(parhello, hello, []) ! C end,
-		"Hello World!\n"
-	).
+  Message = "Hello World!\n",
+  Counter = spawn(parhello, counter, [length(Message)]),
+  [ spawn(parhello, hello, [Counter]) ! C ||
+    C <- Message ].

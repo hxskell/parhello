@@ -1,7 +1,7 @@
 all: test
 
 test: parhello.beam
-	erl -noinput -s parhello -s init stop
+	erl -noshell -s parhello
 
 parhello.beam: parhello.erl
 	erlc parhello.erl
