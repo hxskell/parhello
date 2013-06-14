@@ -1,7 +1,7 @@
 all: test
 
 test: parhello
-	./parhello +RTS
+	./parhello +RTS -N
 
 parhello: parhello.hs
 	ghc -package parallel-io -threaded parhello.hs -o parhello
