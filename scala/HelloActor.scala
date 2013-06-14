@@ -7,26 +7,26 @@ case class Store(v : Char)
 case class Show()
 
 class HActor extends Actor {
-	var c : Char = ' ';
+  var c : Char = ' ';
 
-	def act() = {
-		while (true) {
-			receive {
-				case Store(v) => c = v
-				case Show() => print(c); exit
-			}
-		}
-	}
+  def act() = {
+    while (true) {
+      receive {
+        case Store(v) => c = v
+        case Show() => print(c); exit
+      }
+    }
+  }
 }
 
 object HelloActor {
-	def main(args : Array[String]) {
-		val s = "Hello World!"
+  def main(args : Array[String]) {
+    val s = "Hello World!"
 
-		val as : Seq[HActor] = s.map { _ => new HActor }
-		as.map(_.start)
+    val as : Seq[HActor] = s.map { _ => new HActor }
+    as.map(_.start)
 
-		(as, s).zipped map (_ ! Store(_))
-		as.map (_ ! Show())
-	}
+    (as, s).zipped map (_ ! Store(_))
+    as.map (_ ! Show())
+  }
 }
