@@ -1,5 +1,4 @@
 import scala.actors.Actor
-import scala.actors.Actor._
 
 case class Show(v : Char)
 
