@@ -9,31 +9,31 @@ import Control.Distributed.Process.Backend.SimpleLocalnet
 import Data.Maybe
 import System.Environment (getArgs)
 
-data ImTheCounter = ImTheCounter NodeId
-data ImTheMaster = ImTheMaster NodeId
+data ImTheCounter = ImTheCounter ProcessId
+data ImTheMaster = ImTheMaster ProcessId
 data Say = Say Char
 data Done = Done
 data Dec = Dec
 
-counter :: (Maybe NodeId) -> Int -> [NodeId] -> Process ()
+counter :: (Maybe ProcessId) -> Int -> [NodeId] -> Process ()
 counter Nothing n _ = receiveWait [
-  match (\(ImTheMaster masterNid') -> do
-    counterNid <- getSelfNode
-    send masterNid' (ImTheCounter counterNid)
-    counter (Just masterNid') n)
+  match (\(ImTheMaster masterPid') -> do
+    counterPid <- getSelfPid
+    send masterPid' (ImTheCounter counterPid)
+    counter (Just masterPid') n [])
   ]
-counter (Just masterNid') 0 _ = send masterNid' Done
-counter masterNid n _ = receiveWait [
-  match (\Dec -> counter masterNid (n-1) [])
+counter (Just masterPid') 0 _ = send masterPid' Done
+counter masterPid n _ = receiveWait [
+  match (\Dec -> counter masterPid (n-1) [])
   ]
 
-speaker :: NodeId -> [NodeId] -> Process ()
-speaker counterNid _ = do
+speaker :: ProcessId -> [NodeId] -> Process ()
+speaker counterPid _ = do
   receiveWait [
     match (\(Say c) -> do
       say (c:[])
-      send counterNid Dec
-      speaker counterNid [])
+      send counterPid Dec
+      speaker counterPid [])
     ]
 
 message :: String
@@ -44,14 +44,14 @@ done = length message
 
 master :: Backend -> [NodeId] -> Process ()
 master backend workers = do
-  masterNid <- getSelfNode
+  masterPid <- getSelfPid
 
   -- Find the counter
-  mapM (\worker -> send worker (ImTheMaster masterNid)) workers
+  mapM (\worker -> send worker (ImTheMaster masterPid)) workers
   receiveWait [
-    match (\(ImTheCounter counterNid) -> do
+    match (\(ImTheCounter counterPid) -> do
        -- Inform the speakers
-       let speakers = workers - [counterNid]
+       let speakers = workers - [counterPid]
        mapM (\(speaker,c) -> send speaker c) $ zip (cycle speakers) message
 
        -- Wait for count
@@ -75,4 +75,4 @@ main = do
     ["counter", host, port] -> do
       backend <- initializeBackend host port initRemoteTable
       node <- newLocalNode backend
-      runProcess node (counter Nothing done)
+      runProcess node (counter Nothing done [])
