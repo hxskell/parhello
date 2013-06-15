@@ -1,0 +1,15 @@
+all: test
+
+test: parhello
+	./parhello counter localhost 8081 &
+	./parhello speaker localhost 8082 &
+	./parhello speaker localhost 8083 &
+	./parhello master localhost 8080
+
+parhello: parhello.hs
+	ghc --make -O2 parhello.hs -package distributed-process -package distributed-process-simplelocalnet -threaded
+
+clean:
+	-rm parhello
+	-rm *.hi
+	-rm *.o
