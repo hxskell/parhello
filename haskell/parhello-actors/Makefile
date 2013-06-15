@@ -1,9 +1,8 @@
 all: test
 
 test: parhello
-	./parhello counter localhost 8081 &
+	./parhello speaker localhost 8081 &
 	./parhello speaker localhost 8082 &
-	./parhello speaker localhost 8083 &
 	./parhello master localhost 8080
 
 parhello: parhello.hs
