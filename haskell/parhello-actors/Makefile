@@ -1,6 +1,7 @@
 all: test
 
 test: parhello
+	killall parhello
 	./parhello speaker localhost 8081 &
 	./parhello speaker localhost 8082 &
 	./parhello master localhost 8080
