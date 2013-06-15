@@ -1,5 +1,5 @@
 object ParHello {
   def main(args: Array[String]) {
-    "Hello World!".par.map(print)
+    "Hello World!\n".par.map(print)
   }
 }

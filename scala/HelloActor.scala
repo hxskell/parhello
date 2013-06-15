@@ -1,32 +1,21 @@
-// Parallel Hello World using actors
-
 import scala.actors.Actor
 import scala.actors.Actor._
 
-case class Store(v : Char)
-case class Show()
+case class Show(v : Char)
 
 class HActor extends Actor {
-  var c : Char = ' ';
-
-  def act() = {
-    while (true) {
-      receive {
-        case Store(v) => c = v
-        case Show() => print(c); exit
-      }
-    }
+  def act = receive {
+    case Show(c) => print(c)
   }
 }
 
 object HelloActor {
   def main(args : Array[String]) {
-    val s = "Hello World!"
+    val s = "Hello World!\n"
 
     val as : Seq[HActor] = s.map { _ => new HActor }
     as.map(_.start)
 
-    (as, s).zipped map (_ ! Store(_))
-    as.map (_ ! Show())
+    (as, s).zipped map (_ ! Show(_))
   }
 }
