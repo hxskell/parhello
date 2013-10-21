@@ -19,5 +19,8 @@ parhello-c++11: parhello-c++11.cpp
 test: parhello-c++11
 	./parhello-c++11
 
+lint:
+	cppcheck *.cpp *.h
+
 clean:
 	-rm parhello-c++11
