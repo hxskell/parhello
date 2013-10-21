@@ -9,6 +9,9 @@ test: parhello
 parhello: parhello.hs
 	ghc --make -O2 parhello.hs -package distributed-process -package distributed-process-simplelocalnet -threaded
 
+lint:
+	hlint .
+
 clean:
 	-rm parhello
 	-rm *.hi
