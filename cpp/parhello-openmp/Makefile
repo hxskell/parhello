@@ -6,5 +6,8 @@ parhello-openmp: parhello-openmp.cpp
 test: parhello-openmp
 	./parhello-openmp
 
+lint:
+	cppcheck *.cpp *.h
+
 clean:
 	-rm parhello-openmp
