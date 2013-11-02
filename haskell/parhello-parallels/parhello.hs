@@ -5,6 +5,7 @@
 import Control.Concurrent.ParallelIO.Global
 import System.IO
 
+main :: IO ()
 main = do
   -- By default, buffering prevents some IO nondeterminism
   hSetBuffering stdout NoBuffering
