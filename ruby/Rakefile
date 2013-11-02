@@ -1,0 +1,8 @@
+task :test => [] do
+  sh "ruby parhello.rb"
+end
+
+task :lint => [] do
+  sh "bundle exec reek -q .; true"
+  sh "bundle exec flay ."
+end

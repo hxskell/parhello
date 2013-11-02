@@ -1,0 +1,10 @@
+source "http://rubygems.org"
+gem "parallel"
+
+group :development do
+  gem "guard"
+  gem "guard-shell"
+  gem "rake"
+  gem "reek"
+  gem "flay"
+end
