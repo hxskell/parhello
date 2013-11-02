@@ -7,7 +7,7 @@ test: parhello
 	./parhello
 
 lint:
-	splint +warning-stream-stdout *.c *.h
+	splint *.c *.h
 
 clean:
 	-rm parhello
