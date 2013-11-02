@@ -1,10 +1,12 @@
-all: parhello
+CC=gcc-4.7
 
-parhello: parhello.c
-	gcc -fopenmp -o parhello parhello.c -Wall
+all: test
 
 test: parhello
 	./parhello
+
+parhello: parhello.c
+	$(CC) -fopenmp -o parhello parhello.c -Wall
 
 lint:
 	splint *.c *.h
