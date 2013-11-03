@@ -42,7 +42,7 @@ master False message backend _ = do
   register "master" masterPid'
 
   peers <- liftIO $ findPeers backend 20000 -- ms
-  mapM (\peer -> registerRemoteAsync peer "master" masterPid') peers
+  mapM_ (\peer -> registerRemoteAsync peer "master" masterPid') peers
 
   master True message backend []
 master True "" backend _ = terminateAllSlaves backend
@@ -66,3 +66,4 @@ main = do
       backend <- initializeBackend host port initRemoteTable
       node <- newLocalNode backend
       runProcess node (speaker Nothing)
+    _ -> return ()
