@@ -5,7 +5,7 @@
 int main() {
   char *s = "Hello World!\n";
 
-  int i;
+  size_t i;
 
 #pragma omp parallel for
   for (i = 0; i < strlen(s); i++) {
