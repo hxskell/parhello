@@ -6,7 +6,7 @@ test: parhello
 	./parhello
 
 parhello: parhello.c
-	$(CC) -fopenmp -o parhello parhello.c -Wall
+	$(CC) -fopenmp -o parhello -O2 parhello.c -Wall
 
 lint:
 	splint *.c *.h
