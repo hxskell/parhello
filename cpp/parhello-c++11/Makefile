@@ -1,4 +1,5 @@
 CC=g++
+
 LINK_OPTIONS=
 
 ifeq ("${MSYSTEM}", "MINGW32")
@@ -11,13 +12,13 @@ else
 	endif
 endif
 
-all: parhello-c++11
-
-parhello-c++11: parhello-c++11.cpp
-	$(CC) -std=c++11 -stdlib=libc++ $(LINK_OPTIONS) -o parhello-c++11 parhello-c++11.cpp
+all: test
 
 test: parhello-c++11
 	./parhello-c++11
+
+parhello-c++11: parhello-c++11.cpp
+	$(CC) -std=c++11 -stdlib=libc++ $(LINK_OPTIONS) -o parhello-c++11 parhello-c++11.cpp
 
 lint:
 	cppcheck *.cpp *.h
