@@ -7,7 +7,7 @@ parhello-openmp: parhello-openmp.cpp
 	g++ -O2 -Wall -Wextra -fopenmp -o parhello-openmp parhello-openmp.cpp
 
 lint:
-	cppcheck *.cpp *.h
+	cppcheck .
 
 clean:
 	-rm *.exe

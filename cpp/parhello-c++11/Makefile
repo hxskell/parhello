@@ -21,7 +21,7 @@ parhello-c++11: parhello-c++11.cpp
 	$(CC) -O2 -Wall -Wextra -std=c++11 -stdlib=libc++ $(LINK_OPTIONS) -o parhello-c++11 parhello-c++11.cpp
 
 lint:
-	cppcheck *.cpp *.h
+	cppcheck .
 
 clean:
 	-rm parhello-c++11
