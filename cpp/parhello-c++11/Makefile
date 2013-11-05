@@ -1,4 +1,5 @@
 CC=g++
+FLAGS=-O2 -Wall -Wextra -Weffc++
 
 LINK_OPTIONS=
 
@@ -9,6 +10,7 @@ else
 
 	ifeq ($(UNAME_S),Darwin)
 		CC=clang++
+		FLAGS=-O2 -Wall -Wextra -Weffc++ -Wmost -Weverything -Wno-c++98-compat
 	endif
 endif
 
@@ -18,7 +20,7 @@ test: parhello-c++11
 	./parhello-c++11
 
 parhello-c++11: parhello-c++11.cpp
-	$(CC) -O2 -Wall -Wextra -Weffc++ -std=c++11 -stdlib=libc++ $(LINK_OPTIONS) -o parhello-c++11 parhello-c++11.cpp
+	$(CC) $(FLAGS) -std=c++11 -stdlib=libc++ $(LINK_OPTIONS) -o parhello-c++11 parhello-c++11.cpp
 
 lint:
 	cppcheck --enable=all --suppress=missingIncludeSystem .
