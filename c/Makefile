@@ -10,7 +10,7 @@ parhello: parhello.c
 	$(CC) $(FLAGS) -fopenmp -o parhello parhello.c
 
 lint:
-	splint *.c *.h
+	splint *.c *.h -preproc
 
 clean:
 	-rm *.exe

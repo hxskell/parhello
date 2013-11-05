@@ -9,7 +9,7 @@ int main() {
 
 #pragma omp parallel for
   for (i = 0; i < strlen(s); i++) {
-    putc(s[i], stdout);
+    (void) putc(s[i], stdout);
   }
 
   return 0;
