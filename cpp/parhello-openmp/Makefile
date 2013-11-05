@@ -1,5 +1,5 @@
-CC=clang++
-FLAGS=-O2 -Wall -Wextra -Weffc++ -Wmost -Weverything
+CC=g++-4.7
+FLAGS=-O2 -Wall -Wextra -Weffc++
 
 all: test
 
