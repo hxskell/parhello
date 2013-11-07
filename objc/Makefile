@@ -1,4 +1,4 @@
-FLAGS=-Wall -Wextra -Wmost -framework Foundation -lobjc -o parhello
+FLAGS=-Wall -Wextra -Wmost -Weverything -framework Foundation -lobjc -o parhello
 
 all: test
 
