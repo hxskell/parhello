@@ -1,5 +1,5 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
 group :development do
-  gem "churn"
+  gem 'churn'
 end

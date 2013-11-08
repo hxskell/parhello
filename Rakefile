@@ -1,3 +1,3 @@
 task :churn => [] do
-  sh "bundle exec churn"
+  sh 'bundle exec churn'
 end
