@@ -22,8 +22,13 @@ test: parhello-c++11
 parhello-c++11: parhello-c++11.cpp
 	$(CC) $(FLAGS) -std=c++11 -stdlib=libc++ $(LINK_OPTIONS) -o parhello-c++11 parhello-c++11.cpp
 
-lint:
+cppcheck:
 	cppcheck --enable=all --suppress=missingIncludeSystem .
+
+cpplint:
+	cpplint --filter=-build/header_guard,-whitespace/parens,-readability/braces,-whitespace/newline,-legal/copyright *.cpp *.h
+
+lint: cppcheck
 
 clean:
 	-rm parhello-c++11

@@ -1,8 +1,8 @@
+#include <future>
 #include <iostream>
 #include <string>
 #include <vector>
 #include <numeric>
-#include <future>
 using namespace std;
 
 int main() {
