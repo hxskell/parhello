@@ -3,7 +3,12 @@
 #include <string>
 #include <vector>
 #include <numeric>
-using namespace std;
+using std::cout;
+using std::string;
+using std::vector;
+using std::future;
+using std::async;
+using std::launch;
 
 int main() {
   string message = "Hello World!\n";

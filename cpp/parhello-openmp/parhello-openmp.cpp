@@ -1,8 +1,8 @@
 #include <omp.h>
 #include <iostream>
 #include <string>
-
-using namespace std;
+using std::cout;
+using std::string;
 
 int main() {
   string s = "Hello World!\n";
