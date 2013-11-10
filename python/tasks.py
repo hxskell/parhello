@@ -5,5 +5,13 @@ def test():
   run("python parhello.py")
 
 @task
-def lint():
+def pylint():
   run("pylint *.py")
+
+@task
+def pyflakes():
+  run("pyflakes .")
+
+@task("pylint", "pyflakes")
+def lint():
+  pass
