@@ -1,10 +1,16 @@
 all: test
 
-test: parhello.beam
+test: compile
 	erl -noshell -s parhello
 
-parhello.beam: parhello.erl
-	erlc -Wall parhello.erl
+compile: parhello.erl
+	erlc -Wall +debug_info parhello.erl
+
+~/.dialyzer_plt: compile
+	dialyzer *.beam --build_plt --quiet
+
+lint: ~/.dialyzer_plt
+	dialyzer *.beam
 
 clean:
 	-rm *.beam
