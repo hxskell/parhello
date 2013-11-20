@@ -1,6 +1,5 @@
 #!/bin/bash
 printer() {
-  sleep $[ $RANDOM % 2 ]s
   echo "$1"
 }
 export -f printer
@@ -8,5 +7,5 @@ export -f printer
 message="Hello World!"
 
 for (( i=0; i<${#message}; i++ )); do
-  printf "%s\0" ${message:$i:1}
+  printf "%s\0" "${message:$i:1}"
 done | xargs -0 -n 1 -P 4 bash -c 'printer "$@"' -- 
