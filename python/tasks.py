@@ -5,6 +5,10 @@ def test():
   run("python parhello.py")
 
 @task
+def pep8():
+  run("pep8 .")
+
+@task
 def pylint():
   run("pylint *.py")
 
@@ -12,6 +16,6 @@ def pylint():
 def pyflakes():
   run("pyflakes .")
 
-@task("pylint", "pyflakes")
+@task("pep8", "pylint", "pyflakes")
 def lint():
   pass
