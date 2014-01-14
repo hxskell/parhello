@@ -1,11 +1,20 @@
-/** Hello World in parallel */
+package us.yellosoft.parhello;
+
+/**
+   <p>Hello World in parallel</p>
+*/
 public final class ParHello {
-  /** Actor */
+  /** Utility class */
+  private ParHello() {}
+
+  /**
+     <p>Actor for printing individual characters</p>
+  */
   private static class CharPrinter implements Runnable {
     private char c;
 
     /**
-       <p>Construct actor</p>
+       <p>Construct a printer actor.</p>
        @param c character to print
     */
     public CharPrinter(final char c) {
@@ -17,9 +26,6 @@ public final class ParHello {
       System.out.print(c);
     }
   }
-
-  /** utility class */
-  private ParHello() {}
 
   /**
      <p>Main app</p>
