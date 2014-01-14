@@ -3,7 +3,7 @@
 #include <string.h>
 
 int main() {
-  char *s = "Hello World!\n";
+  char* s = "Hello World!\n";
 
   size_t i;
 
