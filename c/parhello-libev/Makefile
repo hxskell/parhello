@@ -7,7 +7,7 @@ test: parhello
 	./parhello
 
 parhello: parhello.c
-	$(CC) $(FLAGS) -o parhello parhello.c
+	$(CC) $(FLAGS) -o parhello parhello.c -lev
 
 lint:
 	splint *.c *.h
