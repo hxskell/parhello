@@ -1,3 +1,5 @@
+// Copyright (c) YelloSoft
+
 #include <omp.h>
 #include <stdio.h>
 #include <string.h>

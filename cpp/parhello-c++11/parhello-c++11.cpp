@@ -1,3 +1,5 @@
+// Copyright (C) YelloSoft
+
 #include <future>
 #include <iostream>
 #include <string>

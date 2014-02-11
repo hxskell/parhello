@@ -1,3 +1,5 @@
+// Copyright (C) YelloSoft
+
 #include <ev.h>
 #include <stdio.h>
 #include <string.h>
