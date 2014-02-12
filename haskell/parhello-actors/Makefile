@@ -7,7 +7,7 @@ test: parhello
 	./parhello master localhost 8080
 
 parhello: parhello.hs
-	ghc -O2 -Wall --make parhello.hs -package distributed-process -package distributed-process-simplelocalnet -threaded
+	ghc -O2 -Wall -fwarn-tabs --make parhello.hs -package distributed-process -package distributed-process-simplelocalnet -threaded
 
 lint:
 	hlint .
