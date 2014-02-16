@@ -1,5 +1,6 @@
 *.exe
 *.o
 *.hi
+*.dSYM/
 Gemfile.lock
 tmp/
