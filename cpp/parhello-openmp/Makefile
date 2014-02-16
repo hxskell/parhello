@@ -26,6 +26,9 @@ vera++:
 
 lint: cppcheck cpplint splint vera++
 
+valgrind: parhello-openmp
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./parhello-openmp
+
 clean:
 	-rm *.exe
 	-rm parhello-openmp

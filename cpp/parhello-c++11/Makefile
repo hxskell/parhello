@@ -39,5 +39,8 @@ vera++:
 
 lint: cppcheck cpplint splint vera++
 
+valgrind: parhello-c++11
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./parhello-c++11
+
 clean:
 	-rm parhello-c++11

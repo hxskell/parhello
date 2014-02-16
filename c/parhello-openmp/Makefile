@@ -1,13 +1,15 @@
 CC=gcc-4.7
 FLAGS=-O2 -Wall -Wextra
 
+BIN=parhello
+
 all: test
 
-test: parhello
-	./parhello
+test: $(BIN)
+	./$(BIN)
 
-parhello: parhello.c
-	$(CC) $(FLAGS) -fopenmp -o parhello parhello.c
+$(BIN): parhello.c
+	$(CC) $(FLAGS) -fopenmp -o $(BIN) parhello.c
 
 splint:
 	find . -type f -name '*.c' -exec splint {} \;
@@ -20,6 +22,9 @@ vera++:
 
 lint: splint vera++
 
+valgrind: $(BIN)
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
+
 clean:
 	-rm *.exe
-	-rm parhello
+	-rm $(BIN)
