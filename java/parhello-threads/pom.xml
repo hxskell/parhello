@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
 
   <name>parhello</name>
-  <url>https://github.com/mcandre/parhello/tree/master/java</url>
+  <url>https://github.com/mcandre/parhello/tree/master/java/parhello-threads/</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
