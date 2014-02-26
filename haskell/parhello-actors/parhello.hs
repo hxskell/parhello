@@ -3,9 +3,29 @@
 {-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
-import Control.Distributed.Process
+import Control.Distributed.Process (
+  Process,
+  ProcessId,
+  NodeId,
+  getSelfPid,
+  register,
+  registerRemoteAsync,
+  whereis,
+  send,
+  say,
+  receiveWait,
+  match,
+  liftIO,
+  )
 import Control.Distributed.Process.Node (initRemoteTable, runProcess)
-import Control.Distributed.Process.Backend.SimpleLocalnet (Backend, startMaster, initializeBackend, newLocalNode, terminateAllSlaves, findPeers)
+import Control.Distributed.Process.Backend.SimpleLocalnet (
+  Backend,
+  startMaster,
+  initializeBackend,
+  newLocalNode,
+  terminateAllSlaves,
+  findPeers
+  )
 
 import Control.Concurrent (threadDelay)
 
