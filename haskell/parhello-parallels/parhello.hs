@@ -2,8 +2,12 @@
 
 -- Andrew Pennebaker
 
-import Control.Concurrent.ParallelIO.Global
-import System.IO
+import Control.Concurrent.ParallelIO.Global (parallel_, stopGlobalPool)
+import System.IO (
+  BufferMode(NoBuffering),
+  stdout,
+  hSetBuffering
+  )
 
 main :: IO ()
 main = do
