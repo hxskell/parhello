@@ -14,5 +14,10 @@ ParHello.class: ParHello.scala
 HelloActor.class: HelloActor.scala
 	scalac HelloActor.scala
 
+lint: scalaclint
+
+scalaclint:
+	for s in *.scala; do scalac -deprecation $$s; done
+
 clean:
 	-rm *.class
