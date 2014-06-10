@@ -1,20 +1,23 @@
-import scala.actors.Actor
+import akka.actor.{ Actor, ActorRef, ActorSystem, Props }
 
 case class Show(v : Char)
 
 class HActor extends Actor {
-  def act = receive {
+  def receive = {
     case Show(c) => print(c)
   }
 }
 
 object HelloActor {
   def main(args : Array[String]) {
+    val system = ActorSystem("HelloSystem")
+
     val s = "Hello World!\n"
 
-    val as : Seq[HActor] = s.map { _ => new HActor }
-    as.map(_.start)
+    val as : Seq[ActorRef] = s.map(c => system.actorOf(Props[HActor]))
 
-    (as, s).zipped map (_ ! Show(_))
+    (as, s).zipped map ((a, c) => a ! Show(c))
+
+    system.shutdown
   }
 }
