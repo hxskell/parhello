@@ -1,3 +1,5 @@
+all: test
+
 test: lib/parhello
 	./lib/parhello
 
