@@ -1,5 +1,4 @@
-":";exec clj -m `basename $0 .clj` ${1+"$@"}
-":";exit
+":";exec lein exec $0 ${1+"$@"}
 
 ; Load:
 ;
@@ -25,3 +24,6 @@
 
 (defn -main [& args]
     (doall (pmap print "Hello World!\n")))
+
+(when (.contains (first *command-line-args*) *source-path*)
+  (apply -main (rest *command-line-args*)))
