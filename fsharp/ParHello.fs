@@ -1,3 +1,7 @@
+#light (*
+       exec fsharpi --exec "$0" --quiet
+*)
+
 namespace ParHello
 
 open System.Threading.Tasks
