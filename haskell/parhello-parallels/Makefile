@@ -1,16 +1,20 @@
+BIN=parhello
+
+FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp -o $(BIN) -main-is ParHello
+
 all: test
 
-test: parhello
-	./parhello +RTS -N
+test: $(BIN)
+	./$(BIN) +RTS -N
 
-parhello: parhello.hs
-	ghc -O2 -Wall -fwarn-tabs --make -package parallel-io -threaded parhello.hs -o parhello
+$(BIN): ParHello.hs
+	ghc $(FLAGS) ParHello.hs -threaded -package parallel-io
 
 lint:
 	hlint .
 
 clean:
+	-rm $(BIN)
 	-rm *.exe
 	-rm *.o
 	-rm *.hi
-	-rm parhello
