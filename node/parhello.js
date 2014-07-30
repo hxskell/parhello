@@ -9,7 +9,7 @@ var Printer = function(string) {
   this.fired = 0;
 };
 
-Printer.prototype = new events.EventEmitter;
+Printer.prototype = new events.EventEmitter();
 
 Printer.prototype.print = function() {
   var self = this;
@@ -32,7 +32,7 @@ Printer.prototype.print = function() {
       );
     })(c);
   }
-}
+};
 
 function main() {
   new Printer("Hello World!\n").on("end", function() {
