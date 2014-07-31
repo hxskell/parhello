@@ -12,7 +12,7 @@ $(BIN): parhello.c
 	$(CC) $(FLAGS) -fopenmp -o $(BIN) parhello.c
 
 cppcheck:
-	cppcheck --enable=all --suppressions $$HOME/suppressions.cfg .
+	cppcheck --quiet --enable=all --suppressions $$HOME/suppressions.cfg .
 
 splint:
 	find . -type f -name '*.[ch]' -exec splint {} \;
