@@ -1,5 +1,5 @@
-CC=gcc-4.7
-FLAGS=-O2 -Wall -Wextra
+CC=clang
+FLAGS=-O2 -Wall -Wextra -Wmost -Weverything
 
 BIN=parhello
 
@@ -8,7 +8,7 @@ all: test
 test: $(BIN)
 	./$(BIN)
 
-$(BIN): parhello.c
+$(BIN): parhello.c parhello.h
 	$(CC) $(FLAGS) -o $(BIN) parhello.c -lev
 
 cppcheck:

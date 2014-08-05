@@ -3,19 +3,28 @@
 #include <ev.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
+#include "parhello.h"
 
-static ev_async signature;
+typedef char queue;
 
-void printer(struct ev_loop *loop, struct ev_io *watcher, int revents) {
+extern bool queue_get(queue *q);
+extern void queue_put(queue q);
+
+void printer(
+  struct ev_loop __attribute((unused)) *loop,
+  struct ev_io __attribute__((unused)) *watcher,
+  __attribute__((unused)) int revents
+) {
   char data;
 
   while (queue_get(&data)) {
-    putc(watcher->c);
+    putc(data, stdout);
   }
 }
 
 int main() {
-  char *s = "Hello World!\n";
+  const char *s = "Hello World!\n";
 
   size_t i;
 
@@ -27,9 +36,9 @@ int main() {
 
   ev_run(loop, 0);
 
-  for (i = 0; i < s; i++) {
+  for (i = 0; i < (size_t) s; i++) {
     queue_put(s[i]);
-    ev_async_send(&signature);
+    ev_async_send(&signature, &watcher);
   }
 
   return 0;
