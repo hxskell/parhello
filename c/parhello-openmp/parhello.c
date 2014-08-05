@@ -5,7 +5,7 @@
 #include <string.h>
 
 int main() {
-  char* s = "Hello World!\n";
+  const char* s = "Hello World!\n";
 
   size_t i;
 
