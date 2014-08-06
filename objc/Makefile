@@ -11,22 +11,22 @@ ifneq ($(OS),Windows_NT)
 	endif
 endif
 
-BIN=parhello
+BIN=bin/parhello
 
 all: test
 
 test: $(BIN)
-	./$(BIN)
+	$(BIN)
 
 $(BIN): parhello.m
+	mkdir -p bin/
 	clang $(FLAGS) $(LINUX_FLAGS) -o $(BIN) parhello.m
 
 lint: $(BIN)
-	oclint parhello.m -- $(FLAGS)
+	oclint parhello.m -- $(FLAGS) -o $(BIN)
 
 valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
 
 clean:
-	-rm *.exe
-	-rm $(BIN)
+	-rm -rf bin/

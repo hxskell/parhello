@@ -1,11 +1,13 @@
+BIN=bin/parhello
+
 all: test
 
-test: parhello
-	./parhello
+test: $(BIN)
+	$(BIN)
 
-parhello: parhello.oz
-	ozc -x parhello.oz
+$(BIN): parhello.oz
+	mkdir -p bin/
+	ozc -x -o $(BIN) parhello.oz
 
 clean:
-	-rm parhello
-	-rm *.exe
+	-rm -rf bin/

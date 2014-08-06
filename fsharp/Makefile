@@ -1,10 +1,13 @@
+BIN=bin/parhello.exe
+
 all: test
 
-test: parhello.exe
-	mono parhello.exe
+test: $(BIN)
+	mono $(BIN)
 
-parhello.exe: ParHello.fs
-	fsharpc --nologo --out:parhello.exe ParHello.fs
+$(BIN): ParHello.fs
+	mkdir -p bin/
+	fsharpc --nologo --out:$(BIN) ParHello.fs
 
 clean:
-	-rm *.exe
+	-rm -rf bin/

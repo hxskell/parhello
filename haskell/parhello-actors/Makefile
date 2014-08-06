@@ -1,18 +1,21 @@
+BIN=bin/parhello
+
 all: test
 
-test: parhello
+test: $(BIN)
 	-killall parhello
-	./parhello speaker localhost 8081 &
-	./parhello speaker localhost 8082 &
-	./parhello master localhost 8080
+	$(BIN) speaker localhost 8081 &
+	$(BIN) speaker localhost 8082 &
+	$(BIN) master localhost 8080
 
-parhello: parhello.hs
-	ghc -O2 -Wall -fwarn-tabs --make parhello.hs -package distributed-process -package distributed-process-simplelocalnet -threaded
+$(BIN): parhello.hs
+	mkdir -p bin/
+	ghc -O2 -Wall -fwarn-tabs --make parhello.hs -o $(BIN) -package distributed-process -package distributed-process-simplelocalnet -threaded
 
 lint:
 	hlint .
 
 clean:
-	-rm parhello
+	-rm -rf bin/
 	-rm *.hi
 	-rm *.o

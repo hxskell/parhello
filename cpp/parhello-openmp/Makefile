@@ -1,13 +1,16 @@
 CC=g++-4.7
 FLAGS=-O2 -Wall -Wextra -Weffc++
 
+BIN=bin/parhello-opemmp
+
 all: test
 
-test: parhello-openmp
-	./parhello-openmp
+test: $(BIN)
+	$(BIN)
 
-parhello-openmp: parhello-openmp.cpp
-	$(CC) $(FLAGS) -fopenmp -o parhello-openmp parhello-openmp.cpp
+$(BIN): parhello-openmp.cpp
+	mkdir -p bin/
+	$(CC) $(FLAGS) -fopenmp -o $(BIN) parhello-openmp.cpp
 
 cppcheck:
 	cppcheck --quiet --enable=all --suppressions $$HOME/suppressions.cfg .
@@ -27,5 +30,4 @@ valgrind: parhello-openmp
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./parhello-openmp
 
 clean:
-	-rm *.exe
-	-rm parhello-openmp
+	-rm -rf bin/

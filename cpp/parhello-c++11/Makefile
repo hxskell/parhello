@@ -14,13 +14,16 @@ else
 	endif
 endif
 
+BIN=bin/parhello-c++11
+
 all: test
 
-test: parhello-c++11
-	./parhello-c++11
+test: $(BIN)
+	$(BIN)
 
-parhello-c++11: parhello-c++11.cpp
-	$(CC) $(FLAGS) -std=c++11 -stdlib=libc++ $(LINK_OPTIONS) -o parhello-c++11 parhello-c++11.cpp
+$(BIN): parhello-c++11.cpp
+	mkdir -p bin/
+	$(CC) $(FLAGS) -std=c++11 -stdlib=libc++ $(LINK_OPTIONS) -o $(BIN) parhello-c++11.cpp
 
 cppcheck:
 	cppcheck --quiet --enable=all --suppressions $$HOME/suppressions.cfg .
@@ -40,4 +43,4 @@ valgrind: parhello-c++11
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./parhello-c++11
 
 clean:
-	-rm parhello-c++11
+	-rm -rf bin/
