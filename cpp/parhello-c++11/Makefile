@@ -1,17 +1,10 @@
-CC=g++
-FLAGS=-O2 -Wall -Wextra -Weffc++
+CC=clang++
+FLAGS=-O2 -Wall -Wextra -Weffc++ -Wmost -Weverything -Wno-c++98-compat
 
 LINK_OPTIONS=
 
 ifeq ("${MSYSTEM}", "MINGW32")
 	LINK_OPTIONS=-Wl,--enable-auto-import
-else
-	UNAME_S := $(shell uname -s)
-
-	ifeq ($(UNAME_S),Darwin)
-		CC=clang++
-		FLAGS=-O2 -Wall -Wextra -Weffc++ -Wmost -Weverything -Wno-c++98-compat
-	endif
 endif
 
 BIN=bin/parhello-c++11
@@ -23,7 +16,7 @@ test: $(BIN)
 
 $(BIN): parhello-c++11.cpp
 	mkdir -p bin/
-	$(CC) $(FLAGS) -std=c++11 -stdlib=libc++ $(LINK_OPTIONS) -o $(BIN) parhello-c++11.cpp
+	$(CC) $(FLAGS) -std=c++11 -stdlib=libc++ -lpthread $(LINK_OPTIONS) -o $(BIN) parhello-c++11.cpp
 
 cppcheck:
 	cppcheck --quiet --enable=all --suppressions $$HOME/suppressions.cfg .
