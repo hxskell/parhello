@@ -1,5 +1,6 @@
 CC=clang++
-FLAGS=-O2 -Wall -Wextra -Weffc++ -Wmost -Weverything -Wno-source-uses-openmp
+FLAGS=-std=c++11 -stdlib=libc++ -O2 -Wall -Wextra -Weffc++ -Wmost -Weverything -Wno-c++98-compat -Wno-source-uses-openmp
+FEATURES=-fopenmp
 
 BIN=bin/parhello-opemmp
 
@@ -10,7 +11,7 @@ test: $(BIN)
 
 $(BIN): parhello-openmp.cpp
 	mkdir -p bin/
-	$(CC) $(FLAGS) -fopenmp -o $(BIN) parhello-openmp.cpp
+	$(CC) $(FLAGS) $(FEATURES) -o $(BIN) parhello-openmp.cpp
 
 cppcheck:
 	cppcheck --quiet --enable=all --suppressions $$HOME/suppressions.cfg .
