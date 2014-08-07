@@ -1,6 +1,7 @@
 FLAGS=-Wall -Wextra -Wmost -Weverything -framework Foundation -lobjc
-
 LINUX_FLAGS=
+FEATURES=-fblocks
+LINK_OPTIONS=-ldispatch
 
 ifneq ($(OS),Windows_NT)
 	UNAME_S := $(shell uname -s)
@@ -20,7 +21,7 @@ test: $(BIN)
 
 $(BIN): parhello.m
 	mkdir -p bin/
-	clang $(FLAGS) $(LINUX_FLAGS) -o $(BIN) parhello.m
+	clang $(FLAGS) $(LINUX_FLAGS) $(FEATURES) $(LINK_OPTIONS) -o $(BIN) parhello.m
 
 lint: $(BIN)
 	oclint parhello.m -- $(FLAGS) -o $(BIN)
