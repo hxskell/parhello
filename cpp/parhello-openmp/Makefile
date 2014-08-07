@@ -1,5 +1,5 @@
-CC=g++-4.7
-FLAGS=-O2 -Wall -Wextra -Weffc++
+CC=clang++
+FLAGS=-O2 -Wall -Wextra -Weffc++ -Wmost -Weverything -Wno-source-uses-openmp
 
 BIN=bin/parhello-opemmp
 
