@@ -1,7 +1,7 @@
 FLAGS=-Wall -Wextra -Wmost -Weverything -framework Foundation -lobjc
 LINUX_FLAGS=
 FEATURES=-fblocks
-LINK_OPTIONS=-ldispatch
+LINK_OPTIONS=-ldispatch -lBlocksRuntime
 
 ifneq ($(OS),Windows_NT)
 	UNAME_S := $(shell uname -s)
@@ -19,12 +19,12 @@ all: test
 test: $(BIN)
 	$(BIN)
 
-$(BIN): parhello.m
+$(BIN): ParHello.m
 	mkdir -p bin/
-	clang $(FLAGS) $(LINUX_FLAGS) $(FEATURES) $(LINK_OPTIONS) -o $(BIN) parhello.m
+	clang $(FLAGS) $(LINUX_FLAGS) $(FEATURES) $(LINK_OPTIONS) -o $(BIN) ParHello.m
 
 lint: $(BIN)
-	oclint parhello.m -- $(FLAGS) -o $(BIN)
+	oclint ParHello.m -- $(FLAGS) -o $(BIN)
 
 valgrind: $(BIN)
 	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes --dsymutil=yes ./$(BIN)
