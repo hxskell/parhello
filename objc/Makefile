@@ -1,7 +1,7 @@
 FLAGS=-Wall -Wextra -Wmost -Weverything -framework Foundation -lobjc
 LINUX_FLAGS=
 FEATURES=-fblocks
-LINK_OPTIONS=-ldispatch -lBlocksRuntime
+LINK_OPTIONS=
 
 ifneq ($(OS),Windows_NT)
 	UNAME_S := $(shell uname -s)
@@ -9,6 +9,8 @@ ifneq ($(OS),Windows_NT)
 	ifeq ($(UNAME_S),Linux)
 		FLAGS=-Wall -lobjc
 		LINUX_FLAGS=-I `gnustep-config --variable=GNUSTEP_SYSTEM_HEADERS` -L `gnustep-config --variable=GNUSTEP_SYSTEM_LIBRARIES` -lgnustep-base -fconstant-string-class=NSConstantString -D_NATIVE_OBJC_EXCEPTIONS
+
+		LINK_OPTIONS=-ldispatch -lBlocksRuntime
 	endif
 endif
 
@@ -31,3 +33,4 @@ valgrind: $(BIN)
 
 clean:
 	-rm -rf bin/
+	-rm -rf *.dSYM/
