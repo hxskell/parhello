@@ -5,7 +5,9 @@ An example of parallel / concurrent processing in Node.js
 # EXAMPLE
 
 ```
-$ node parhello.js 
+$ npm pack
+$ npm install -g parhello-0.0.0.tgz
+$ parhello
 o ol!Wdlr
 ```
 
