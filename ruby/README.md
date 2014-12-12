@@ -1,8 +1,14 @@
-# parhello.rb
+# parhello/ruby
 
-Hello World, parallelized.
+Hello World, parallelized, in Ruby
 
-# Example
+# EXAMPLE
 
-    $ ruby parhello.rb
-    HeloloW dlr!
+```
+$ ruby parhello.rb
+HeloloW dlr!
+```
+
+# REQUIREMENTS
+
+* [Ruby](https://www.ruby-lang.org/) 1.9+
