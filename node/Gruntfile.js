@@ -2,7 +2,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
 		exec: {
 			test: "npm test",
-      jshint: "jshint ."
+
+      jshint: "node_modules/jshint/bin/jshint .",
 		}
   });
 
@@ -10,5 +11,10 @@ module.exports = function(grunt) {
 
   grunt.registerTask("default", ["exec:test"]);
   grunt.registerTask("test", ["exec:test"]);
-  grunt.registerTask("lint", ["exec:jshint"]);
+
+  grunt.registerTask("lint", [
+    "exec:jshint"
+  ]);
+
+  grunt.registerTask("jshint", ["exec:jshint"]);
 };
