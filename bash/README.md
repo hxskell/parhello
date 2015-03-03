@@ -5,6 +5,6 @@ A parallelized Hello World program in `bash`
 # EXAMPLE
 
 ```
-$ bash lib/parhello 
+$ bash lib/parhello
 HelloW orld!
 ```

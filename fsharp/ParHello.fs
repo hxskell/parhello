@@ -1,5 +1,5 @@
 #light (*
-       exec fsharpi --exec "$0" --quiet
+  exec fsharpi --exec "$0" --quiet
 *)
 
 namespace ParHello
@@ -7,6 +7,6 @@ namespace ParHello
 open System.Threading.Tasks
 
 module ParHello =
-    let main =
-        let s = "Hello World!\n"
-        Parallel.For(0, String.length s, (fun i -> printf "%c" s.[i]))
+  let main =
+    let s = "Hello World!\n"
+    Parallel.For(0, String.length s, (fun i -> printf "%c" s.[i]))
