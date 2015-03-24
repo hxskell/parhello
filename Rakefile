@@ -25,7 +25,8 @@ end
 task :lint => [
   :churn,
   :lili,
-  :editorconfig
+  :editorconfig,
+  :astyle_dry
 ] do
 end
 
