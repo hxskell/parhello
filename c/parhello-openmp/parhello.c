@@ -9,7 +9,8 @@ int main() {
 
   size_t i;
 
-#pragma omp parallel for
+  #pragma omp parallel for
+
   for (i = 0; i < strlen(s); i++) {
     (void) putc(s[i], stdout);
   }

@@ -8,7 +8,7 @@
 
 typedef char queue;
 
-extern bool queue_get(queue *q);
+extern bool queue_get(queue* q);
 extern void queue_put(queue q);
 
 void printer(
@@ -24,11 +24,11 @@ void printer(
 }
 
 int main() {
-  const char *s = "Hello World!\n";
+  const char* s = "Hello World!\n";
 
   size_t i;
 
-  struct ev_loop *loop = ev_default_loop(0);
+  struct ev_loop* loop = ev_default_loop(0);
   struct ev_io watcher;
 
   ev_io_init(&watcher, printer, 0, EV_READ);
