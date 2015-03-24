@@ -21,8 +21,10 @@ import java.util.StringTokenizer;
 import java.io.IOException;
 
 public class Append {
-  public static class Map extends MapReduceBase implements Mapper<LongWritable, Text, Text, Text> {
-    public void map(LongWritable key, Text value, OutputCollector<Text,Text> output, Reporter reporter) throws IOException {
+  public static class Map extends MapReduceBase implements
+    Mapper<LongWritable, Text, Text, Text> {
+    public void map(LongWritable key, Text value,
+                    OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
       String line = value.toString();
 
       StringTokenizer tokenizer = new StringTokenizer(line);
@@ -33,8 +35,10 @@ public class Append {
     }
   }
 
-  public static class Reduce extends MapReduceBase implements Reducer<Text, Text, Text, Text> {
-    public void reduce(Text key, Iterator<Text> values, OutputCollector<Text,Text> output, Reporter reporter) throws IOException {
+  public static class Reduce extends MapReduceBase implements
+    Reducer<Text, Text, Text, Text> {
+    public void reduce(Text key, Iterator<Text> values,
+                       OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
       Text t = new Text();
 
       while (values.hasNext()) {

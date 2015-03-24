@@ -34,7 +34,7 @@ public final class ParHello {
   public static void main(final String[] args) {
     String message = "Hello World!\n";
 
-    for (char c:message.toCharArray()) {
+    for (char c : message.toCharArray()) {
       new Thread(new CharPrinter(c)).start();
     }
   }
