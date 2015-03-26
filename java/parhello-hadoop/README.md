@@ -6,7 +6,7 @@
 * [Maven](http://maven.apache.org/) 3+
 * [Hadoop](http://hadoop.apache.org/) 1.2.1
 
-Example: `brew install maven hadoop`
+E.g.: `brew install maven hadoop`
 
 # EXAMPLE
 
