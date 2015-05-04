@@ -1,12 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 main() {
   printer() {
-    printf "%s" "$1"
+    printf '%s' "$1"
   }
+
   export -f printer
 
-  message="Hello World!"
+  message='Hello World!'
 
   for (( i=0; i<${#message}; i++ )); do
     printf "%s\0" "${message:$i:1}"
@@ -15,6 +16,6 @@ main() {
   printf "\n"
 }
 
-if [[ "$BASH_SOURCE" == "$0" ]]; then
-    main
+if [ "$BASH_SOURCE" = "$0" ]; then
+  main
 fi
